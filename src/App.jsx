@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import NavBar from "./components/NavBar";
+import TitleCard from "./components/TitleCard";
+import PeopleCard from "./components/PeopleCard";
+import RatingsCard from "./components/RatingsCard";
+import ReleaseCard from "./components/ReleaseCard";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <>
+            <NavBar />
+            <TitleCard />
+
+            <div id="main-body">
+                <div id="movie-description">
+                    <p>PLACE HOLDER DESCRIPTION</p>
+                </div>
+                <div id="main-stats-holder">
+                    <div id="main-stats-left">
+                        <div id="people-stats-holder">
+                            <PeopleCard />
+                            <PeopleCard />
+                        </div>
+                    </div>
+
+                    <div id="main-stats-right">
+                        <div id="main-stats-right-top" className="stats-right-holder">
+                            <div id="movie-poster" className="stats-top-child">
+                                <img src="" alt="PLACE HOLDER POSTER" />
+                            </div>
+                            <div id="release-stats-holder" className="stats-bottom-child">
+                                <ReleaseCard />
+                            </div>
+                        </div>
+
+                        <div id="main-stats-right-bottom" className="stats-right-holder">
+                            <div className="ratings-stats-holder stats-top-child">
+                                <RatingsCard />
+                            </div>
+                            <div className="ratings-stats-holder stats-bottom-child">
+                                <RatingsCard />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
 
-export default App
+export default App;

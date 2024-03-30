@@ -1,17 +1,17 @@
-# Web Development Project 5 - *Name of App Here*
+# Web Development Project 5 - *Watch Stat Explorer*
 
 Submitted by: **Ricki Beckless**
 
-This web app: **insert description**
+This web app: **Application created as a project of CodePath's WEB102 unit five assignment. This application aims to allow users to search for a movie (or select one from a list of recommendations) which prompts the app to fetch movie information. Information fetched should (with allowance of modification based on API parameters) include title, poster, description, people involved, release information, reviews, and ratings.**
 
-Time spent: **X** hours spent in total
+Time spent: **12** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **The list displays a list of data fetched using an API call**
-- [ ] **Data uses the useEffect React hook and async/await syntax**
+- [X] **The list displays a list of data fetched using an API call**
+- [X] **Data uses the useEffect React hook and async/await syntax**
 - [ ] **The app dashboard includes at least three summary statistics about the data such as**
   - [ ] *insert details*
 - [ ] **A search bar allows the user to search for an item in the fetched data**
@@ -31,9 +31,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![IMGBB GIF]()
+![Watch Stat Explorer](https://i.ibb.co/gVZmfzf/Code-Path-Project-Five-Walkthrough.gif)
 
-GIF also found at [IMGBB LINK]() on ImgBB
+GIF also found at [Watch Stat Explorer](https://i.ibb.co/gVZmfzf/Code-Path-Project-Five-Walkthrough.gif) on ImgBB
 
 GIF created with: [ScreenToGif](https://www.screentogif.com/) for Windows
 
