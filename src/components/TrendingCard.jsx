@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const TrendingMovieCard = () => {
+const TrendingMovieCard = ({ setSearchResults }) => {
 
     const [movies, setMovies] = useState([]);
 
@@ -21,8 +21,24 @@ const TrendingMovieCard = () => {
         fetchTrendingMovies();
     }, []);
 
-    const handleSearch = (movieId) => {
-        console.log("movieId:", movieId);
+    const handleSearch = async (movieId, movieData) => {
+        try {
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
+            );
+            const movieCredits = response.data;
+            console.log("movieId:", movieId);
+            console.log("movieCredits:", movieCredits);
+            console.log("movieData:", movieData);
+
+            const movieSearchQuery = await axios.get(
+                `https://api.themoviedb.org/3/search/movie?query=${movieData.title}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
+            );
+            const slicedSearchResults = movieSearchQuery.data.results.slice(0, 1);
+            setSearchResults(slicedSearchResults);
+        } catch (error) {
+            console.error('Error fetching movie credits:', error);
+        }
     };
 
     return (
@@ -30,7 +46,7 @@ const TrendingMovieCard = () => {
             <ul>
                 {movies.map((movie, index) => (
                     <li key={movie.id}  className="trending-list">{index + 1}: 
-                        <button onClick={() => handleSearch(movie.id)} className="trending-title">
+                        <button onClick={() => handleSearch(movie.id, movie)} className="trending-title">
                             {movie.title}
                         </button>
                     </li>
@@ -40,8 +56,8 @@ const TrendingMovieCard = () => {
     );
 };
 
-const TrendingTVCard = () => {
-
+const TrendingTVCard = ({ setSearchResults, setSearchType }) => {
+    
     const [shows, setShows] = useState([]);
 
     useEffect(() => {
@@ -60,16 +76,36 @@ const TrendingTVCard = () => {
         fetchTrendingShows();
     }, []);
 
-    const handleSearch = (showId) => {
-        console.log("showId:", showId);
+    const handleSearch = async (showId, showData) => {
+        try {
+            if (showData.media_type === 'tv') {
+                setSearchType('tv');
+            }
+
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/tv/${showId}/credits?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
+            );
+            const showCredits = response.data;
+            console.log("showId:", showId);
+            console.log("showCredits:", showCredits);
+            console.log("showData:", showData);
+
+            const showSearchQuery = await axios.get(
+                `https://api.themoviedb.org/3/search/tv?query=${showData.name}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
+            );
+            const slicedSearchResults = showSearchQuery.data.results.slice(0, 1);
+            setSearchResults(slicedSearchResults);
+        } catch (error) {
+            console.error('Error fetching show credits:', error);
+        }
     };
-  
+
     return (
         <div id="trending-card">
             <ul>
                 {shows.map((show, index) => (
                     <li key={show.id}  className="trending-list">{index + 1}: 
-                        <button onClick={() => handleSearch(show.id)} className="trending-title">
+                        <button onClick={() => handleSearch(show.id, show)} className="trending-title">
                             {show.name}
                         </button>
                     </li>
@@ -77,6 +113,7 @@ const TrendingTVCard = () => {
             </ul>
         </div>
     );
+
 };
 
 export { TrendingMovieCard, TrendingTVCard };

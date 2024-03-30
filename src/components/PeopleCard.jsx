@@ -1,10 +1,27 @@
-const PeopleCard = () => {
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const CastCard = () => {
+
+
 
     return (
-        <div className="people-stats-card">
-            <h2>THIS IS THE PEOPLE CARD</h2>
+        <div id="cast-card">
+
         </div>
     );
 };
 
-export default PeopleCard;
+const CrewCard = () => {
+
+
+  
+    return (
+        <div id="crew-card">
+
+        </div>
+    );
+};
+
+export { CastCard, CrewCard};
+
