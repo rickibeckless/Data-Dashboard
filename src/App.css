@@ -13,8 +13,8 @@
 
     background-color: #373f3c;
 
-    width: 23vw;
-    max-height: 100vh;
+    width: 20vw;
+    height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -41,6 +41,8 @@
 
 #search-form-holder h5 {
     font-size: .95rem;
+    padding: 1vw;
+    text-align: center;
 }
 
 #navbar-form {
@@ -61,11 +63,12 @@
 
 #navbar-form-options {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 70%;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
+    gap: 1vh;
 
     margin: 1vh 0;
 }
@@ -101,6 +104,9 @@
 #navbar-trending-holder h3 {
     margin-top: 2vh;
     font-size: 1.3rem;
+    padding: 0 1vw;
+    text-align: center;
+    text-decoration: underline;
 }
 
 #trending-card {
@@ -124,11 +130,56 @@
     padding: 1%;
 }
 
+.people-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    font-weight: 500;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 1%;
+
+    transition: font-size 0.3s ease-in-out;
+}
+
+.people-list:hover {
+    font-weight: 600;
+    font-size: 1.2rem;
+    background-color: #5a67624d;
+}
+
+.people-right {
+    text-align: right;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.people-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: .8vh;
+}
+
+.trending-title {
+    color: #ffffff;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    text-align: left;
+    transition: font-size 0.3s ease-in-out;
+}
+
+.trending-title:hover {
+    font-weight: 600;
+    font-size: 1.2rem;
+    background-color: #5a67624d;
+}
 
 /* MAIN BODY STYLES */
 
 #title-card, #main-body {
-    margin-left: 23vw;
+    margin-left: 20vw;
 }
 
 #main-body {
@@ -146,6 +197,8 @@
     background-color: #d0d0d0;
 
     padding: 1vh 2vw;
+
+    z-index: 5;
 }
 
 #movie-title {
@@ -167,7 +220,7 @@
     grid-template-columns: 1fr 3fr;
     gap: 1vw;
 
-    margin-top: 5vh;
+    margin: 5vh 1vw;
 }
 
 #main-stats-left, #main-stats-right {
@@ -193,6 +246,40 @@
     min-height: 50vh;
 }
 
+.people-card {
+    padding: 0 .5vw 1vw;
+    border-radius: 20px;
+}
+
+li {
+    display: block;
+    list-style-type: none;
+}
+
+#cast-card, #crew-card {
+    overflow: scroll;
+    border: 5px solid #000000;
+    margin: 1vh 0;    
+}
+
+#cast-card {
+    height: 70vh;
+}
+
+#crew-card {
+    height: 40vh;
+
+}
+
+.people-header {
+    position: sticky;
+    top: 0;
+    background-color: #d0d0d0;
+    text-align: center;
+    border-bottom: 3px solid black;
+    margin-bottom: 1%;
+}
+
 /* main stats right styles */
 #main-stats-right {
     display: grid;
@@ -207,13 +294,13 @@
 /* movie stats styles */
 #movie-poster img {
     width: 100%;
-    height: 100%;
+    height: 75vh;
 }
 
 .stats-top-child {
-    height: 65vh;
-    overflow: scroll;
+    height: 75vh;
     border: 1px solid #000000;
+    margin: 1vh;
 }
 
 #main-stats-left-top {
@@ -221,16 +308,9 @@
 }
 
 .stats-bottom-child {
-    height: 35vh;
+    height: 45vh;
     overflow: scroll;
     border: 1px solid #000000;
+    margin: 1vh 0;
 }
 
-.trending-title {
-    color: #ffffff;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    background: none;
-    text-align: left;
-}

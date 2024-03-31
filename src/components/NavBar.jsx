@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TrendingMovieCard, TrendingTVCard } from "./TrendingCard";
+import { CastCard, CrewCard } from './PeopleCard';
 
-const NavBar = ({ setSearchResults }) => {
+const NavBar = ({ setSearchResults, setCredits }) => {
 
     /*
         when the user clicks the search button, the app should:
         (X) use the input value to search for a movie or tv show
         (X) display the title card for the movie or tv show
         (X) display the movie description in the movie description section
-        ( ) display the movie poster in the movie poster section
+        (X) display the movie poster in the movie poster section
         ( ) display the release date in the release date section
         ( ) display the ratings in the ratings section
-        ( ) display the cast in the cast section
-        ( ) display the crew in the crew section
+        (X) display the cast in the cast section
+        (X) display the crew in the crew section
 
         it would do this by:
         (X) using: `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
@@ -25,6 +26,15 @@ const NavBar = ({ setSearchResults }) => {
         (X) console.log the search query when the form is submitted
         (X) create a function that handles the form submission
         (X) create a function that fetches the search results
+
+        
+        for some filtering aspects, I want to:
+        ( ) allow for filtering by language
+            i.e. the search results should be in the language the user selects
+        ( ) allow for filtering by region
+            i.e. the search results should be in the region the user selects
+        ( ) allow for filtering by rating
+            i.e. user can select either true or false for movies rated adult; default is false
     */
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -41,17 +51,17 @@ const NavBar = ({ setSearchResults }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let apiUrl;
+            let apiSearchUrl;
             let queryField;
             if (searchType === 'movie') {
-                apiUrl = `https://api.themoviedb.org/3/search/movie`;
+                apiSearchUrl = `https://api.themoviedb.org/3/search/movie`;
                 queryField = 'title';
             } else if (searchType === 'tv') {
-                apiUrl = `https://api.themoviedb.org/3/search/tv`;
+                apiSearchUrl = `https://api.themoviedb.org/3/search/tv`;
                 queryField = 'name';
             }
 
-            const response = await axios.get(apiUrl, {
+            const response = await axios.get(apiSearchUrl, {
                 params: {
                     query: searchQuery,
                     include_adult: false,
@@ -61,15 +71,47 @@ const NavBar = ({ setSearchResults }) => {
                 }
             });
 
+            console.log('Search API Response:', response);
+
             const mappedResults = response.data.results.map(result => ({
                 id: result.id,
                 title: result[queryField],
                 overview: result.overview,
+                poster_path: result.poster_path,
+                media_type: searchType,
+                cast: result.cast,
+                crew: result.crew,
+                adult: result.adult,
+                release_date: result.release_date,
             }));
 
             const slicedSearchResults = mappedResults.slice(0, 1);
             setSearchResults(slicedSearchResults);
             console.log('search results:', slicedSearchResults);
+
+            if (slicedSearchResults.length > 0) {
+                const firstResult = slicedSearchResults[0];
+                let creditsUrl;
+                if (firstResult.media_type === 'movie') {
+                    creditsUrl = `https://api.themoviedb.org/3/movie/${firstResult.id}/credits`;
+                } else if (firstResult.media_type === 'tv') {
+                    creditsUrl = `https://api.themoviedb.org/3/tv/${firstResult.id}/credits`;
+                }
+    
+                if (creditsUrl) {
+                    const creditsResponse = await axios.get(creditsUrl, {
+                        params: {
+                            api_key: import.meta.env.VITE_MOVIE_SEARCH_KEY
+                        }
+                    });
+                    const creditsData = creditsResponse.data;
+                    console.log('Credits data:', creditsData);
+                    setCredits({
+                        cast: creditsData.cast || [],
+                        crew: creditsData.crew || []
+                    });
+                }
+            }
         } catch (error) {
             console.error('Error fetching search results:', error);
         }
@@ -96,9 +138,9 @@ const NavBar = ({ setSearchResults }) => {
 
             <div id="navbar-trending-holder">
                 <h3>Movies Now Trending</h3>
-                <TrendingMovieCard setSearchResults={setSearchResults} />
+                <TrendingMovieCard setSearchResults={setSearchResults} setCredits={setCredits} />
                 <h3>Shows Now Trending</h3>
-                <TrendingTVCard setSearchResults={setSearchResults} setSearchType={setSearchType} />
+                <TrendingTVCard setSearchResults={setSearchResults} setSearchType={setSearchType} setCredits={setCredits} />
             </div>
         </nav>
     );

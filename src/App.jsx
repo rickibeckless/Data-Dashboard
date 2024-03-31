@@ -10,10 +10,11 @@ import { TrendingMovieCard, TrendingTVCard } from './components/TrendingCard';
 function App() {
 
     const [searchResults, setSearchResults] = useState([]);
+    const [credits, setCredits] = useState({ cast: [], crew: [] });
 
     return (
         <>
-            <NavBar setSearchResults={setSearchResults} />
+            <NavBar setSearchResults={setSearchResults} setCredits={setCredits}  />
             <div id="title-card">
                 <div id="movie-title">
                     {searchResults.length > 0 ? (
@@ -47,15 +48,25 @@ function App() {
                 <div id="main-stats-holder">
                     <div id="main-stats-left">
                         <div id="people-stats-holder">
-                            <CastCard />
-                            <CrewCard />
+                            <CastCard cast={credits.cast} />
+                            <CrewCard crew={credits.crew} />
                         </div>
                     </div>
 
                     <div id="main-stats-right">
                         <div id="main-stats-right-top" className="stats-right-holder">
                             <div id="movie-poster" className="stats-top-child">
-                                <img src="https://placebear.com/200/300" alt="PLACE HOLDER POSTER" />
+                                {searchResults.length > 0 && (
+                                    <div>
+                                        {searchResults.map(result => (
+                                            <div key={result.id}>
+                                                {result.poster_path && (
+                                                    <img src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} alt="No Movie Poster Available" />
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                             <div id="release-stats-holder" className="stats-bottom-child">
                                 <ReleaseCard />
