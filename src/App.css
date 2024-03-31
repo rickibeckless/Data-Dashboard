@@ -185,7 +185,7 @@
 #main-body {
     min-height: 100dvh;
 
-    background-color: #d0d0d0;
+    background-color: #919b98;
     padding: .5vw;
 }
 
@@ -194,17 +194,22 @@
     position: sticky;
     top: 0;
 
-    background-color: #d0d0d0;
+    background-color: #373f3cf2;
 
-    padding: 1vh 2vw;
+    padding: .5vh 1vh;
 
     z-index: 5;
 }
 
 #movie-title {
-    font-size: 2rem;
-    font-weight: 600;
+    color: #ffffff;
     text-align: center;
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 300;
+    font-variant: small-caps;
+    letter-spacing: 2px;
+
 }
 
 /* movie description */
@@ -274,9 +279,15 @@ li {
 .people-header {
     position: sticky;
     top: 0;
-    background-color: #d0d0d0;
+    background-color: #373f3cf2;
+    color: #ffffff;
     text-align: center;
+    font-weight: 500;
+    font-variant: small-caps;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
     border-bottom: 3px solid black;
+    border-radius: 0 0 20px 20px;
     margin-bottom: 1%;
 }
 
@@ -299,7 +310,6 @@ li {
 
 .stats-top-child {
     height: 75vh;
-    border: 1px solid #000000;
     margin: 1vh;
 }
 
@@ -310,7 +320,6 @@ li {
 .stats-bottom-child {
     height: 45vh;
     overflow: scroll;
-    border: 1px solid #000000;
     margin: 1vh 0;
 }
 

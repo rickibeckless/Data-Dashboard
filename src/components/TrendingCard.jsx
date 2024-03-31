@@ -7,7 +7,7 @@ import axios from 'axios';
     ( ) give users a way to filter the trending movies/tv shows by week or day
 */
 
-const TrendingMovieCard = ({ setSearchResults, setCredits }) => {
+const TrendingMovieCard = ({ setSearchResults, setCredits, setReviews }) => {
 
     const [movies, setMovies] = useState([]);
 
@@ -43,6 +43,7 @@ const TrendingMovieCard = ({ setSearchResults, setCredits }) => {
             const slicedSearchResults = movieSearchQuery.data.results.slice(0, 1);
             setSearchResults(slicedSearchResults);
             setCredits(movieCredits);
+
         } catch (error) {
             console.error('Error fetching movie credits:', error);
         }

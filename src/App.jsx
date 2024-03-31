@@ -11,6 +11,7 @@ function App() {
 
     const [searchResults, setSearchResults] = useState([]);
     const [credits, setCredits] = useState({ cast: [], crew: [] });
+    const [reviews, setReviews] = useState([]);
 
     return (
         <>
@@ -75,7 +76,7 @@ function App() {
 
                         <div id="main-stats-right-bottom" className="stats-right-holder">
                             <div className="ratings-stats-holder stats-top-child">
-                                <RatingsCard />
+                                <RatingsCard reviews={reviews} />
                             </div>
                             <div className="ratings-stats-holder stats-bottom-child">
                                 <RatingsCard />

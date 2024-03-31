@@ -83,6 +83,7 @@ const NavBar = ({ setSearchResults, setCredits }) => {
                 crew: result.crew,
                 adult: result.adult,
                 release_date: result.release_date,
+                reviews: result.reviews,
             }));
 
             const slicedSearchResults = mappedResults.slice(0, 1);
@@ -92,10 +93,13 @@ const NavBar = ({ setSearchResults, setCredits }) => {
             if (slicedSearchResults.length > 0) {
                 const firstResult = slicedSearchResults[0];
                 let creditsUrl;
+                let reviewsUrl;
                 if (firstResult.media_type === 'movie') {
                     creditsUrl = `https://api.themoviedb.org/3/movie/${firstResult.id}/credits`;
+                    reviewsUrl = `https://api.themoviedb.org/3/movie/${firstResult.id}/reviews`;
                 } else if (firstResult.media_type === 'tv') {
                     creditsUrl = `https://api.themoviedb.org/3/tv/${firstResult.id}/credits`;
+                    reviewsUrl = `https://api.themoviedb.org/3/tv/${firstResult.id}/reviews`;
                 }
     
                 if (creditsUrl) {
@@ -104,8 +108,15 @@ const NavBar = ({ setSearchResults, setCredits }) => {
                             api_key: import.meta.env.VITE_MOVIE_SEARCH_KEY
                         }
                     });
+                    const reviewsResponse = await axios.get(reviewsUrl, { 
+                        params: {
+                            api_key: import.meta.env.VITE_MOVIE_SEARCH_KEY
+                        }
+                    })
                     const creditsData = creditsResponse.data;
+                    const reviewsData = reviewsResponse.data;
                     console.log('Credits data:', creditsData);
+                    console.log("Reviews data:", reviewsData);
                     setCredits({
                         cast: creditsData.cast || [],
                         crew: creditsData.crew || []
