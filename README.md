@@ -4,7 +4,7 @@ Submitted by: **Ricki Beckless**
 
 This web app: **Application created as a project of CodePath's WEB102 unit five assignment. This application aims to allow users to search for a movie (or select one from a list of recommendations) which prompts the app to fetch movie information. Information fetched should (with allowance of modification based on API parameters) include title, poster, description, people involved, release information, reviews, and ratings.**
 
-Time spent: **12** hours spent in total
+Time spent: **24** hours spent in total
 
 ## Required Features
 
@@ -12,8 +12,11 @@ The following **required** functionality is completed:
 
 - [X] **The list displays a list of data fetched using an API call**
 - [X] **Data uses the useEffect React hook and async/await syntax**
-- [ ] **The app dashboard includes at least three summary statistics about the data such as**
-  - [ ] *insert details*
+- [X] **The app dashboard includes at least three summary statistics about the data such as**
+  - [X] *Cast & Crew*
+  - [X] *Description*
+  - [X] *Poster*
+  - [X] *Reviews*
 - [X] **A search bar allows the user to search for an item in the fetched data**
 - [ ] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
 
@@ -23,17 +26,13 @@ The following **optional** features are implemented:
 - [ ] Filters use different input types such as a text input, a selection, or a slider
 - [ ] The user can enter specific bounds for filter values
 
-The following **additional** features are implemented:
-
-* [ ] List anything else that you added to improve the site's functionality!
-
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![Watch Stat Explorer](https://i.ibb.co/gVZmfzf/Code-Path-Project-Five-Walkthrough.gif)
+![Watch Stat Explorer](https://i.ibb.co/4P1d3L9/Code-Path-Project-Five-Walkthrough.gif)
 
-GIF also found at [Watch Stat Explorer](https://i.ibb.co/gVZmfzf/Code-Path-Project-Five-Walkthrough.gif) on ImgBB
+GIF also found at [Watch Stat Explorer](https://i.ibb.co/4P1d3L9/Code-Path-Project-Five-Walkthrough.gif) on ImgBB
 
 GIF created with: [ScreenToGif](https://www.screentogif.com/) for Windows
 
