@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-/*
-    for implementing some filter functionalities, I want to:
-    ( ) give users a way to filter the trending movies/tv shows by genre
-    (X) give users a way to filter the trending movies/tv shows by week or day
-*/
-
 const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }) => {
 
     const [movies, setMovies] = useState([]);

@@ -1,10 +1,12 @@
-const FilterCard = () => {
+import React from 'react';
+
+const FilterCard = ({}) => {
 
     return (
-        <div id="release-card">
-            <h2>THIS IS THE RELEASE CARD</h2>
+        <div id="filter-card">
+            
         </div>
     );
-}
+};
 
 export default FilterCard;

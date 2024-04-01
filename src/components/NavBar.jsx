@@ -5,38 +5,6 @@ import { CastCard, CrewCard } from './PeopleCard';
 
 const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
 
-    /*
-        when the user clicks the search button, the app should:
-        (X) use the input value to search for a movie or tv show
-        (X) display the title card for the movie or tv show
-        (X) display the movie description in the movie description section
-        (X) display the movie poster in the movie poster section
-        ( ) display the release date in the release date section
-        (X) display the ratings in the ratings section
-        (X) display the cast in the cast section
-        (X) display the crew in the crew section
-
-        it would do this by:
-        (X) using: `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
-        (X) using: `https://api.themoviedb.org/3/search/tv?query=${searchQuery}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
-
-        to start I want to:
-        (X) create a form that takes a search query
-        (X) create a button that submits the form
-        (X) console.log the search query when the form is submitted
-        (X) create a function that handles the form submission
-        (X) create a function that fetches the search results
-
-        
-        for some filtering aspects, I want to:
-        ( ) allow for filtering by language
-            i.e. the search results should be in the language the user selects
-        ( ) allow for filtering by region
-            i.e. the search results should be in the region the user selects
-        ( ) allow for filtering by rating
-            i.e. user can select either true or false for movies rated adult; default is false
-    */
-
     const [searchQuery, setSearchQuery] = useState('');
     const [searchType, setSearchType] = useState('movie');
     
