@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TrendingMovieCard, TrendingTVCard } from "./TrendingCard";
 import { CastCard, CrewCard } from './PeopleCard';
 
-const NavBar = ({ setSearchResults, setCredits }) => {
+const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
 
     /*
         when the user clicks the search button, the app should:
@@ -71,8 +71,6 @@ const NavBar = ({ setSearchResults, setCredits }) => {
                 }
             });
 
-            console.log('Search API Response:', response);
-
             const mappedResults = response.data.results.map(result => ({
                 id: result.id,
                 title: result[queryField],
@@ -88,7 +86,6 @@ const NavBar = ({ setSearchResults, setCredits }) => {
 
             const slicedSearchResults = mappedResults.slice(0, 1);
             setSearchResults(slicedSearchResults);
-            console.log('search results:', slicedSearchResults);
 
             if (slicedSearchResults.length > 0) {
                 const firstResult = slicedSearchResults[0];
@@ -115,8 +112,7 @@ const NavBar = ({ setSearchResults, setCredits }) => {
                     })
                     const creditsData = creditsResponse.data;
                     const reviewsData = reviewsResponse.data;
-                    console.log('Credits data:', creditsData);
-                    console.log("Reviews data:", reviewsData);
+
                     setCredits({
                         cast: creditsData.cast || [],
                         crew: creditsData.crew || []

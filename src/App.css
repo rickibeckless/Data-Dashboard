@@ -18,7 +18,7 @@
     overflow-y: auto;
     overflow-x: hidden;
 
-    color: #ffffff;
+    color: #d0d8d5;
 }
 
 #navbar-header {
@@ -79,8 +79,8 @@
     font-variant: small-caps;
     letter-spacing: 1px;
     padding: 0.5rem;
-    border: 1.5px solid #ffffff;
-    color: #ffffff;
+    border: 1.5px solid #d0d8d5;
+    color: #d0d8d5;
     background-color: #5a6762;
     cursor: pointer;
 }
@@ -161,7 +161,7 @@
 }
 
 .trending-title {
-    color: #ffffff;
+    color: #d0d8d5;
     border: none;
     font-size: 1rem;
     cursor: pointer;
@@ -189,6 +189,12 @@
     padding: .5vw;
 }
 
+a {
+    color: #000000;
+    font-style: italic;
+    font-size: .9rem;
+}
+
 /* movie title */
 #title-card {
     position: sticky;
@@ -202,7 +208,7 @@
 }
 
 #movie-title {
-    color: #ffffff;
+    color: #d0d8d5;
     text-align: center;
     font-size: 1.8rem;
     font-style: italic;
@@ -276,11 +282,10 @@ li {
 
 }
 
-.people-header {
-    position: sticky;
-    top: 0;
+.body-card-header {
+
     background-color: #373f3cf2;
-    color: #ffffff;
+    color: #d0d8d5;
     text-align: center;
     font-weight: 500;
     font-variant: small-caps;
@@ -300,6 +305,7 @@ li {
 .stats-right-holder {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 /* movie stats styles */
@@ -323,3 +329,77 @@ li {
     margin: 1vh 0;
 }
 
+#release-card {
+    border: 2px solid black;
+}
+
+.ratings-stats-holder {
+    overflow: scroll;
+    height: 120vh;
+    border: 2px solid black;
+
+    background-color: #5a6762;
+}
+
+#review-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#review-card-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#review-read-all {
+    font-size: 1rem;
+    letter-spacing: normal;
+    font-variant: normal;
+}
+
+#review-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.review-list-item {
+    border: 1px solid black;
+    margin: 2%;
+
+    border-radius: 10px;
+    padding: 2%;
+
+    background-color: #919b98;
+}
+
+.review-list-author {
+    text-align: right;
+}
+
+.review-list-content {
+    transition: font-size 0.3s ease-in-out;
+    text-align: justify;
+    text-indent: 10%;
+    border-left: 3px solid #000000;
+    border-right: 3px solid #000000;
+    margin: 0 3%;
+    padding: 3%;
+}
+
+.review-list-content:hover {
+    font-size: 1.04rem;
+    font-weight: 500;
+}
+
+.review-list-detail {
+    text-align: center;
+    font-style: italic;
+    font-weight: 300;
+}

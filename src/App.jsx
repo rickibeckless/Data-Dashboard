@@ -15,7 +15,7 @@ function App() {
 
     return (
         <>
-            <NavBar setSearchResults={setSearchResults} setCredits={setCredits}  />
+            <NavBar setSearchResults={setSearchResults} setCredits={setCredits} setReviews={setReviews} searchResults={searchResults} />
             <div id="title-card">
                 <div id="movie-title">
                     {searchResults.length > 0 ? (
@@ -76,11 +76,9 @@ function App() {
 
                         <div id="main-stats-right-bottom" className="stats-right-holder">
                             <div className="ratings-stats-holder stats-top-child">
-                                <RatingsCard reviews={reviews} />
+                                <RatingsCard reviews={reviews} searchResults={searchResults} mediaType={searchResults.length > 0 ? searchResults[0].media_type : null} />
                             </div>
-                            <div className="ratings-stats-holder stats-bottom-child">
-                                <RatingsCard />
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

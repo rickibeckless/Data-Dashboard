@@ -7,7 +7,7 @@ import axios from 'axios';
     ( ) give users a way to filter the trending movies/tv shows by week or day
 */
 
-const TrendingMovieCard = ({ setSearchResults, setCredits, setReviews }) => {
+const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }) => {
 
     const [movies, setMovies] = useState([]);
 
@@ -29,13 +29,14 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, setReviews }) => {
 
     const handleSearch = async (movieId, movieData) => {
         try {
+            const reviewResponse = await axios.get(
+                `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
+            )
             const response = await axios.get(
                 `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
             );
             const movieCredits = response.data;
-            console.log("movieId:", movieId);
-            console.log("movieCredits:", movieCredits);
-            console.log("movieData:", movieData);
+            const movieReviews = reviewResponse.data;
     
             const movieSearchQuery = await axios.get(
                 `https://api.themoviedb.org/3/search/movie?query=${movieData.title}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
@@ -43,7 +44,6 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, setReviews }) => {
             const slicedSearchResults = movieSearchQuery.data.results.slice(0, 1);
             setSearchResults(slicedSearchResults);
             setCredits(movieCredits);
-
         } catch (error) {
             console.error('Error fetching movie credits:', error);
         }
@@ -90,14 +90,15 @@ const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits }) => {
             if (showData.media_type === 'tv') {
                 setSearchType('tv');
             }
-    
+            const reviewResponse = await axios.get(
+                `https://api.themoviedb.org/3/tv/${showId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
+            )
             const response = await axios.get(
                 `https://api.themoviedb.org/3/tv/${showId}/credits?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
             );
             const showCredits = response.data;
-            console.log("showId:", showId);
-            console.log("showCredits:", showCredits);
-            console.log("showData:", showData);
+            const showReviews = reviewResponse.data;
+
     
             const showSearchQuery = await axios.get(
                 `https://api.themoviedb.org/3/search/tv?query=${showData.name}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
