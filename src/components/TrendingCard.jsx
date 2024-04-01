@@ -4,28 +4,34 @@ import axios from 'axios';
 /*
     for implementing some filter functionalities, I want to:
     ( ) give users a way to filter the trending movies/tv shows by genre
-    ( ) give users a way to filter the trending movies/tv shows by week or day
+    (X) give users a way to filter the trending movies/tv shows by week or day
 */
 
 const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }) => {
 
     const [movies, setMovies] = useState([]);
+    const [trendingTime, setTrendingTime] = useState('week');
 
     useEffect(() => {
-        const fetchTrendingMovies = async () => {
-            try {
-                const response = await axios.get(
-                    `https://api.themoviedb.org/3/trending/movie/week?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}&page=1`
-                );
-                const slicedMovies = response.data.results.slice(0, 10);
-                setMovies(slicedMovies);
-            } catch (error) {
-                console.error('Error fetching trending movies:', error);
-            }
-        };
-    
         fetchTrendingMovies();
-    }, []);
+    }, [trendingTime]);
+
+    const fetchTrendingMovies = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/trending/movie/${trendingTime}?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}&page=1`
+            );
+            const slicedMovies = response.data.results.slice(0, 10);
+            setMovies(slicedMovies);
+            setTrendingTime(trendingTime);
+        } catch (error) {
+            console.error('Error fetching trending movies:', error);
+        }
+    };
+
+    const handleTrendingTimeChange = (event) => {
+        setTrendingTime(event.target.value);
+    };
 
     const handleSearch = async (movieId, movieData) => {
         try {
@@ -52,6 +58,10 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }
 
     return (
         <div id="trending-card">
+            <select id="trending-movie-time" value={trendingTime} onChange={handleTrendingTimeChange}>
+                <option value="week">Week</option>
+                <option value="day">Day</option>
+            </select>
             <ul>
                 {movies.map((movie, index) => (
                     <li key={movie.id}  className="trending-list">{index + 1}: 
@@ -68,22 +78,28 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }
 const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits }) => {
 
     const [shows, setShows] = useState([]);
+    const [trendingTime, setTrendingTime] = useState('week');
 
     useEffect(() => {
-        const fetchTrendingShows = async () => {
-            try {
-                const response = await axios.get(
-                    `https://api.themoviedb.org/3/trending/tv/week?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}&page=1`
-                );
-                const slicedShows = response.data.results.slice(0, 10);
-                setShows(slicedShows);
-            } catch (error) {
-                console.error('Error fetching trending shows:', error);
-            }
-        };
-    
         fetchTrendingShows();
-    }, []);
+    }, [trendingTime]);
+
+    const fetchTrendingShows = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/trending/tv/${trendingTime}?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}&page=1`
+            );
+            const slicedShows = response.data.results.slice(0, 10);
+            setShows(slicedShows);
+            setTrendingTime(trendingTime);
+        } catch (error) {
+            console.error('Error fetching trending shows:', error);
+        }
+    };    
+
+    const handleTrendingTimeChange = (event) => {
+        setTrendingTime(event.target.value);
+    };
 
     const handleSearch = async (showId, showData) => {
         try {
@@ -114,6 +130,10 @@ const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits }) => {
 
     return (
         <div id="trending-card">
+            <select id="trending-tv-time" value={trendingTime} onChange={handleTrendingTimeChange}>
+                <option value="week">Week</option>
+                <option value="day">Day</option>
+            </select>            
             <ul>
                 {shows.map((show, index) => (
                     <li key={show.id}  className="trending-list">{index + 1}: 

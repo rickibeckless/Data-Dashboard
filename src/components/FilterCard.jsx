@@ -1,4 +1,4 @@
-const ReleaseCard = () => {
+const FilterCard = () => {
 
     return (
         <div id="release-card">
@@ -7,4 +7,4 @@ const ReleaseCard = () => {
     );
 }
 
-export default ReleaseCard;
+export default FilterCard;

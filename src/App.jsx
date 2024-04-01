@@ -4,7 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import { CastCard, CrewCard } from "./components/PeopleCard";
 import RatingsCard from "./components/RatingsCard";
-import ReleaseCard from "./components/ReleaseCard";
+import FilterCard from "./components/FilterCard";
 import { TrendingMovieCard, TrendingTVCard } from './components/TrendingCard';
 
 function App() {
@@ -39,6 +39,9 @@ function App() {
                             {searchResults.map(result => (
                                 <div key={result.id}>
                                     <p>{result.overview}</p>
+                                    {result.media_type === 'movie' && (
+                                        <p id="movie-description-release-date">Release Date: {result.release_date}</p>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -70,7 +73,7 @@ function App() {
                                 )}
                             </div>
                             <div id="release-stats-holder" className="stats-bottom-child">
-                                <ReleaseCard />
+                                <FilterCard />
                             </div>
                         </div>
 

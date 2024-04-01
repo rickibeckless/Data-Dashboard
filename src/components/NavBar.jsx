@@ -12,7 +12,7 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
         (X) display the movie description in the movie description section
         (X) display the movie poster in the movie poster section
         ( ) display the release date in the release date section
-        ( ) display the ratings in the ratings section
+        (X) display the ratings in the ratings section
         (X) display the cast in the cast section
         (X) display the crew in the crew section
 
@@ -84,6 +84,9 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
                 reviews: result.reviews,
             }));
 
+            console.log('search results:', mappedResults);
+            console.log('release date:', mappedResults[0].release_date);
+
             const slicedSearchResults = mappedResults.slice(0, 1);
             setSearchResults(slicedSearchResults);
 
@@ -132,7 +135,7 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
                 <form id="navbar-form" onSubmit={handleSubmit}>
                     <input type="text" id="search-input" placeholder="Search" value={searchQuery} onChange={handleInputChange} required />
                     <div id="navbar-form-options">
-                        <select id="search-select" value={searchType} onChange={handleSearchTypeChange}>
+                        <select className="search-select" value={searchType} onChange={handleSearchTypeChange}>
                             <option value="movie">Movie</option>
                             <option value="tv">TV Show</option>
                         </select>
