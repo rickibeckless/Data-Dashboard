@@ -65,9 +65,9 @@ const RatingsCard = ({ searchResults, mediaType }) => {
         <div id="review-card" className="ratings-card">
             <h2 className="body-card-header" id="review-card-header">
                 Reviews
-                <a href={`https://www.themoviedb.org/movie/${movieId}/reviews`} target="_blank" rel="noopener noreferrer" id="review-read-all">Read All Reviews</a>
+                <a href={`https://www.themoviedb.org/${mediaType}/${movieId}/reviews`} target="_blank" rel="noopener noreferrer" id="review-read-all">Read All Reviews</a>
             </h2>
-            <ul>
+            <ul className="review-card-list">
                 {reviews.map(review => (
                     <li key={review.id} className="review-list-item">
                         <h4 className="review-list-author">{review.author}</h4>

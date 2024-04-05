@@ -13,6 +13,11 @@ function App() {
     const [credits, setCredits] = useState({ cast: [], crew: [] });
     const [reviews, setReviews] = useState([]);
 
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric',  });
+    };
+
     return (
         <>
             <NavBar setSearchResults={setSearchResults} setCredits={setCredits} setReviews={setReviews} searchResults={searchResults} />
@@ -40,7 +45,7 @@ function App() {
                                 <div key={result.id}>
                                     <p>{result.overview}</p>
                                     {result.media_type === 'movie' && (
-                                        <p id="movie-description-release-date">Release Date: {result.release_date}</p>
+                                        <p id="movie-description-release-date">Release Date: {formatDate(result.release_date)}</p>
                                     )}
                                 </div>
                             ))}
@@ -72,9 +77,9 @@ function App() {
                                     </div>
                                 )}
                             </div>
-                            <div id="release-stats-holder" className="stats-bottom-child">
+                            {/* <div id="release-stats-holder" className="stats-bottom-child">
                                 <FilterCard />
-                            </div>
+                            </div> */}
                         </div>
 
                         <div id="main-stats-right-bottom" className="stats-right-holder">

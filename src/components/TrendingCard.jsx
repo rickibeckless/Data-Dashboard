@@ -42,8 +42,10 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }
                 `https://api.themoviedb.org/3/search/movie?query=${movieData.title}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
             );
             const slicedSearchResults = movieSearchQuery.data.results.slice(0, 1);
+
             setSearchResults(slicedSearchResults);
             setCredits(movieCredits);
+            setSearchResults([movieData]);
         } catch (error) {
             console.error('Error fetching movie credits:', error);
         }
@@ -108,14 +110,15 @@ const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits }) => {
             );
             const showCredits = response.data;
             const showReviews = reviewResponse.data;
-
     
             const showSearchQuery = await axios.get(
                 `https://api.themoviedb.org/3/search/tv?query=${showData.name}&include_adult=false&language=en-US&page=1&api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`
             );
             const slicedSearchResults = showSearchQuery.data.results.slice(0, 1);
+
             setSearchResults(slicedSearchResults);
             setCredits(showCredits);
+            setSearchResults([showData]);
         } catch (error) {
             console.error('Error fetching show credits:', error);
         }

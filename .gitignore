@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+
+src/components/FilterCard.jsx
+src/testingButtonAndFilters.txt

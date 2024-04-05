@@ -167,7 +167,7 @@
     font-weight: 300;
 }
 
-.people-card ul {
+.people-card-list {
     display: flex;
     flex-direction: column;
     gap: .8vh;
@@ -380,7 +380,7 @@ li {
     font-variant: normal;
 }
 
-#review-card ul {
+.review-card-list {
     display: flex;
     flex-direction: column;
     gap: 1vh;
