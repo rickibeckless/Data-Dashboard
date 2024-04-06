@@ -1,30 +1,24 @@
-# Web Development Project 5 - *Watch Stat Explorer*
+# Web Development Project 6 - *Watch Stat Explorer*
 
 Submitted by: **Ricki Beckless**
 
 This web app: **Application created as a project of CodePath's WEB102 unit five assignment. This application aims to allow users to search for a movie (or select one from a list of recommendations) which prompts the app to fetch movie information. Information fetched should (with allowance of modification based on API parameters) include title, poster, description, people involved, release information, reviews, and ratings.**
 
-Time spent: **24** hours spent in total
+Time spent: **72** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [X] **The list displays a list of data fetched using an API call**
-- [X] **Data uses the useEffect React hook and async/await syntax**
-- [X] **The app dashboard includes at least three summary statistics about the data such as**
-  - [X] *Cast & Crew*
-  - [X] *Description*
-  - [X] *Poster*
-  - [X] *Reviews*
-- [X] **A search bar allows the user to search for an item in the fetched data**
-- [ ] **Multiple different filters (2+) allow the user to filter items in the database by specified categories**
+- [ ] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
+- [ ] **Clicking on an item in the list view displays more details about it**
+- [ ] **Clicking on an item has a direct, unique link to that item's detail view page**
+
 
 The following **optional** features are implemented:
 
-- [ ] Multiple filters can be applied simultaneously
-- [ ] Filters use different input types such as a text input, a selection, or a slider
-- [ ] The user can enter specific bounds for filter values
+- [ ] The site's customized dashboard contains more content that explains what is interesting about the data
+- [ ] The site allows users to toggle between different data visualizations
 
 ## Video Walkthrough
 
