@@ -451,7 +451,6 @@ svg.recharts-surface {
 }
 
 #release-stats-holder {
-    min-height: 65vh;
     overflow: scroll;
     border: 1px solid #000000;
     margin: 1vh;
@@ -486,3 +485,12 @@ div.recharts-responsive-container {
     letter-spacing: 3px;
     padding: 1vh;
 }
+
+#chart-right-holder, #chart-cast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+

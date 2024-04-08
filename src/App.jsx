@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -6,6 +7,7 @@ import { CastCard, CrewCard } from "./components/PeopleCard";
 import RatingsCard from "./components/RatingsCard";
 import { TrendingMovieCard, TrendingTVCard } from './components/TrendingCard';
 import DataChartCard from './components/DataChartCard';
+import ActorCard from './components/ActorCard';
 
 function App() {
 
@@ -80,6 +82,11 @@ function App() {
     const handleCastClick = (actorId, actorName) => {
         const selectedActor = credits.cast.find(actor => actor.id === actorId);
         setSelectedCast(selectedActor);
+
+        const dataChartCardElement = document.getElementById('release-stats-holder');
+        if (dataChartCardElement) {
+            dataChartCardElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
 
     return (

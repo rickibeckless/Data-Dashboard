@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import { PieChart, Pie, ResponsiveContainer, Cell, Sector } from 'recharts';
 
@@ -87,21 +88,20 @@ const DataChartCard = ({ searchResults, mediaType, cast }) => {
         fetchGenres();
     }, [cast, searchResults]);
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const COLORS = ['#919b98', '#5a6762', '#373f3cf2', '#d0d8d5'];
 
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name, value }) => {
         const RADIAN = Math.PI / 180;
-        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const radius = innerRadius + (outerRadius - innerRadius) ;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
         
         return (
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
                 {`${name} (${value.toFixed(2)}%)`}
             </text>
         );
     };
-    
 
     return (
         <div id="chart-card">
@@ -115,6 +115,7 @@ const DataChartCard = ({ searchResults, mediaType, cast }) => {
                         label={renderCustomizedLabel}
                         fill="#8884d8"
                         dataKey="value"
+                        isAnimationActive={false}
                         activeIndex={activeIndex}
                         activeShape={(props) => {
                             const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, percent, name, value } = props;

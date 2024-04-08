@@ -24,15 +24,11 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![Watch Stat Explorer]()
+![Watch Stat Explorer](https://i.ibb.co/dmwCZJ7/Code-Path-Project-Six-Walkthrough.gif)
 
-GIF also found at [Watch Stat Explorer]() on ImgBB
+GIF also found at [Watch Stat Explorer](https://i.ibb.co/dmwCZJ7/Code-Path-Project-Six-Walkthrough.gif) on ImgBB
 
 GIF created with: [ScreenToGif](https://www.screentogif.com/) for Windows
-
-## Notes
-
-Describe any challenges encountered while building the app.
 
 ## License
 
