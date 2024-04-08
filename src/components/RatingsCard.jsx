@@ -8,25 +8,6 @@ const RatingsCard = ({ searchResults, mediaType }) => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                if (searchResults[0] && 'title' in searchResults[0]) {
-                    if (movieId) {
-                        const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`);
-                        setReviews(response.data.results);
-                    }
-                } else if (searchResults[0] && 'name' in searchResults[0]) {
-                    if (movieId) {
-                        const response = await axios.get(`https://api.themoviedb.org/3/tv/${movieId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`);
-                        setReviews(response.data.results);
-                    }
-                }
-                
-            } catch (error) {
-                console.error('Error fetching reviews:', error);
-            }
-        };
-
-        const fetchSearchReviews = async () => {
-            try {
                 if (mediaType === 'movie') {
                     if (movieId) {
                         const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`);
@@ -44,9 +25,29 @@ const RatingsCard = ({ searchResults, mediaType }) => {
             }
         };
 
+        const fetchSearchReviews = async () => {
+            try {
+                if (mediaType === 'movie') {
+                    if (movieId) {
+                        const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`);
+                        setReviews(response.data.results);
+                        const fullResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/release_dates?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`);
+                    }
+                } else if (mediaType === 'tv') {
+                    if (movieId) {
+                        const response = await axios.get(`https://api.themoviedb.org/3/tv/${movieId}/reviews?api_key=${import.meta.env.VITE_MOVIE_SEARCH_KEY}`);
+                        setReviews(response.data.results);
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+            }
+        };
+
         fetchReviews();
         fetchSearchReviews();
-    }, [movieId]);
+    }, [movieId, mediaType]);
 
     const truncateContent = (content, maxLength) => {
         if (content.length > maxLength) {
@@ -80,7 +81,6 @@ const RatingsCard = ({ searchResults, mediaType }) => {
                     </li>
                 ))}
             </ul>
-            
         </div>
     );
 };

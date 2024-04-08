@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TrendingMovieCard, TrendingTVCard } from "./TrendingCard";
 import { CastCard, CrewCard } from './PeopleCard';
 
-const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
+const NavBar = ({ setSearchResults, setCredits, setReviews, setRelease, handleTrendingTitleClick }) => {
 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchType, setSearchType] = useState('movie');
@@ -49,11 +49,10 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
                 crew: result.crew,
                 adult: result.adult,
                 release_date: result.release_date,
+                release_dates: result.release_dates,
+                type: result.type,
                 reviews: result.reviews,
             }));
-
-            console.log('search results:', mappedResults);
-            console.log('release date:', mappedResults[0].release_date);
 
             const slicedSearchResults = mappedResults.slice(0, 1);
             setSearchResults(slicedSearchResults);
@@ -62,12 +61,15 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
                 const firstResult = slicedSearchResults[0];
                 let creditsUrl;
                 let reviewsUrl;
+                let releaseUrl;
                 if (firstResult.media_type === 'movie') {
                     creditsUrl = `https://api.themoviedb.org/3/movie/${firstResult.id}/credits`;
                     reviewsUrl = `https://api.themoviedb.org/3/movie/${firstResult.id}/reviews`;
+                    releaseUrl = `https://api.themoviedb.org/3/movie/${firstResult.id}/release_dates`;
                 } else if (firstResult.media_type === 'tv') {
                     creditsUrl = `https://api.themoviedb.org/3/tv/${firstResult.id}/credits`;
                     reviewsUrl = `https://api.themoviedb.org/3/tv/${firstResult.id}/reviews`;
+                    releaseUrl = `https://api.themoviedb.org/3/tv/${firstResult.id}/release_dates`;
                 }
     
                 if (creditsUrl) {
@@ -80,9 +82,17 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
                         params: {
                             api_key: import.meta.env.VITE_MOVIE_SEARCH_KEY
                         }
-                    })
+                    });
+                    const releaseResponse = await axios.get(releaseUrl, { 
+                        params: {
+                            api_key: import.meta.env.VITE_MOVIE_SEARCH_KEY
+                        }
+                    });
+
                     const creditsData = creditsResponse.data;
                     const reviewsData = reviewsResponse.data;
+                    const releaseData = releaseResponse.data;
+                    const creditsActorId = creditsData.cast[0].id;
 
                     setCredits({
                         cast: creditsData.cast || [],
@@ -116,9 +126,9 @@ const NavBar = ({ setSearchResults, setCredits, setReviews }) => {
 
             <div id="navbar-trending-holder">
                 <h3>Movies Now Trending</h3>
-                <TrendingMovieCard setSearchResults={setSearchResults} setCredits={setCredits} />
+                <TrendingMovieCard setSearchResults={setSearchResults} setCredits={setCredits} handleTrendingTitleClick={handleTrendingTitleClick} />
                 <h3>Shows Now Trending</h3>
-                <TrendingTVCard setSearchResults={setSearchResults} setSearchType={setSearchType} setCredits={setCredits} />
+                <TrendingTVCard setSearchResults={setSearchResults} setSearchType={setSearchType} setCredits={setCredits} handleTrendingTitleClick={handleTrendingTitleClick} />
             </div>
         </nav>
     );

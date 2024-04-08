@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }) => {
+const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews, handleTrendingTitleClick }) => {
 
     const [movies, setMovies] = useState([]);
     const [trendingTime, setTrendingTime] = useState('week');
@@ -43,9 +43,8 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }
             );
             const slicedSearchResults = movieSearchQuery.data.results.slice(0, 1);
 
-            setSearchResults(slicedSearchResults);
             setCredits(movieCredits);
-            setSearchResults([movieData]);
+            handleTrendingTitleClick([movieData]);
         } catch (error) {
             console.error('Error fetching movie credits:', error);
         }
@@ -71,7 +70,7 @@ const TrendingMovieCard = ({ setSearchResults, setCredits, reviews, setReviews }
     );
 };
 
-const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits }) => {
+const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits, handleTrendingTitleClick }) => {
 
     const [shows, setShows] = useState([]);
     const [trendingTime, setTrendingTime] = useState('week');
@@ -116,9 +115,8 @@ const TrendingTVCard = ({ setSearchResults, setSearchType, setCredits }) => {
             );
             const slicedSearchResults = showSearchQuery.data.results.slice(0, 1);
 
-            setSearchResults(slicedSearchResults);
             setCredits(showCredits);
-            setSearchResults([showData]);
+            handleTrendingTitleClick([showData]);
         } catch (error) {
             console.error('Error fetching show credits:', error);
         }

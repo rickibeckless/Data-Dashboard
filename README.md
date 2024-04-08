@@ -4,13 +4,13 @@ Submitted by: **Ricki Beckless**
 
 This web app: **Application created as a project of CodePath's WEB102 unit five assignment. This application aims to allow users to search for a movie (or select one from a list of recommendations) which prompts the app to fetch movie information. Information fetched should (with allowance of modification based on API parameters) include title, poster, description, people involved, release information, reviews, and ratings.**
 
-Time spent: **72** hours spent in total
+Time spent: **84** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
+- [X] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
 - [ ] **Clicking on an item in the list view displays more details about it**
 - [ ] **Clicking on an item has a direct, unique link to that item's detail view page**
 
@@ -24,9 +24,9 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![Watch Stat Explorer](https://i.ibb.co/4P1d3L9/Code-Path-Project-Five-Walkthrough.gif)
+![Watch Stat Explorer]()
 
-GIF also found at [Watch Stat Explorer](https://i.ibb.co/4P1d3L9/Code-Path-Project-Five-Walkthrough.gif) on ImgBB
+GIF also found at [Watch Stat Explorer]() on ImgBB
 
 GIF created with: [ScreenToGif](https://www.screentogif.com/) for Windows
 

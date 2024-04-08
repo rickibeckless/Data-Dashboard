@@ -151,6 +151,7 @@
     border: 2px solid black;
     border-radius: 10px;
     padding: 1%;
+    cursor: pointer;
 
     transition: font-size 0.3s ease-in-out;
 }
@@ -228,7 +229,6 @@ a {
     font-weight: 300;
     font-variant: small-caps;
     letter-spacing: 2px;
-
 }
 
 /* movie description */
@@ -258,9 +258,7 @@ a {
 }
 
 /* main stats left styles */
-#main-stats-left {
 
-}
 
 /* people stats styles */
 #people-stats-holder {
@@ -298,11 +296,9 @@ li {
 
 #crew-card {
     height: 40vh;
-
 }
 
 .body-card-header {
-
     background-color: #373f3cf2;
     color: #d0d8d5;
     text-align: center;
@@ -421,4 +417,72 @@ li {
     text-align: center;
     font-style: italic;
     font-weight: 300;
+}
+
+.recharts-wrapper svg.recharts-surface {
+    width: 100% !important;
+    height: 100% !important;
+
+    
+}
+
+clipPath rect{
+    
+}
+
+svg.recharts-surface {
+    
+}
+
+#chart-card {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+}
+
+.yAxis {
+    overflow:auto;
+}
+
+.recharts-layer {
+    outline: none !important;
+}
+
+#release-stats-holder {
+    min-height: 65vh;
+    overflow: scroll;
+    border: 1px solid #000000;
+    margin: 1vh;
+    padding: 1vh;
+}
+
+.recharts-wrapper {
+    left: -10vh;
+}
+
+div.recharts-wrapper,
+div.recharts-responsive-container {
+    width: 100% !important;
+    height: 95% !important;
+    max-width: 115% !important;
+    max-height: 95% !important;
+}
+
+div.recharts-responsive-container {
+
+}
+
+#cast-img {
+    width: 20vw;
+}
+
+#data-chart-header {
+    text-align: center;
+    font-weight: 600;
+    font-variant: small-caps;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    padding: 1vh;
 }
